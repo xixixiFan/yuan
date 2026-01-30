@@ -1,0 +1,49 @@
+{
+  "hash": "58d2d898",
+  "configHash": "d807ee10",
+  "lockfileHash": "6e251f24",
+  "browserHash": "b23f1681",
+  "optimized": {
+    "vue": {
+      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "4bbb4155",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../../node_modules/vitepress/node_modules/@vue/devtools-api/dist/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "f40b8ee6",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/core": {
+      "src": "../../../../node_modules/@vueuse/core/index.mjs",
+      "file": "vitepress___@vueuse_core.js",
+      "fileHash": "4e9afc7f",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "src": "../../../../node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "ca6f3f78",
+      "needsInterop": false
+    },
+    "@vue/reactivity": {
+      "src": "../../../../node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js",
+      "file": "@vue_reactivity.js",
+      "fileHash": "5dff6cdb",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-6YECDCWS": {
+      "file": "chunk-6YECDCWS.js"
+    },
+    "chunk-ZMDE4Z5R": {
+      "file": "chunk-ZMDE4Z5R.js"
+    },
+    "chunk-E26UJBJ5": {
+      "file": "chunk-E26UJBJ5.js"
+    }
+  }
+}
