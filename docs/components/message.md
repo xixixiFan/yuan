@@ -3,7 +3,7 @@
 用于展示全局的提示信息。
 
 <script setup>
-import { Message } from '../../../dist/yuan-ui.es.js'
+import { Message } from '../../packages/index.js'
 import mButton from '../../packages/button/index.vue'
 
 const handleInfo = () => {

@@ -2,11 +2,6 @@
 
 用于控制组件之间的间距。
 
-<script setup>
-import mSpace from '../../packages/Space/index.vue'
-import mButton from '../../packages/button/index.vue'
-</script>
-
 ## 基础用法
 
 <div class="demo-preview">
@@ -67,6 +62,28 @@ import mButton from '../../packages/button/index.vue'
 ```
 :::
 
+## 分别设置横向与纵向间距
+
+<div class="demo-preview">
+  <m-space :size="[24, 8]">
+    <m-button>横向 24</m-button>
+    <m-button>横向 24</m-button>
+    <m-button>横向 24</m-button>
+  </m-space>
+</div>
+
+::: details 查看代码
+```vue
+<template>
+  <m-space :size="[24, 8]">
+    <m-button>横向 24</m-button>
+    <m-button>横向 24</m-button>
+    <m-button>横向 24</m-button>
+  </m-space>
+</template>
+```
+:::
+
 ## 垂直排列
 
 <div class="demo-preview">
@@ -95,6 +112,6 @@ import mButton from '../../packages/button/index.vue'
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| size | 间距大小 | `number` | `10` |
+| size | 间距大小 | `number \| [number, number]` | `10` |
 | inline | 是否行内显示 | `boolean` | `true` |
 | alignItems | 对齐方式 | `start` \| `center` \| `end` \| `stretch` | `center` |

@@ -10,7 +10,7 @@
 defineOptions({
   name: "mRadio"
 });
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 const emit = defineEmits(['update:modelValue','change'])
 const props = defineProps({
   modelValue:String|Number,

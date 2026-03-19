@@ -4,9 +4,26 @@
 
 图标通过 CSS 类名的方式使用，无需导入组件。
 
+## 在业务项目引入
+
+```js
+import '../../styles/iconfont.css'
+```
+
+```vue
+<template>
+  <i class="iconfont m-icon-search"></i>
+</template>
+```
+
 ## 使用方式
 
-图标组件库通过 CSS 类名的方式使用：
+<div class="demo-preview">
+  <i class="iconfont m-icon-search"></i>
+  <i class="iconfont m-icon-home"></i>
+  <i class="iconfont m-icon-user"></i>
+  <i class="iconfont m-icon-setting"></i>
+</div>
 
 ```vue
 <template>
@@ -19,6 +36,12 @@
 
 ## 图标大小
 
+<div class="demo-preview">
+  <i class="iconfont m-icon-search" style="font-size: 16px;"></i>
+  <i class="iconfont m-icon-search" style="font-size: 24px;"></i>
+  <i class="iconfont m-icon-search" style="font-size: 32px;"></i>
+</div>
+
 ```vue
 <template>
   <i class="iconfont m-icon-search" style="font-size: 16px;"></i>
@@ -28,6 +51,11 @@
 ```
 
 ## 图标颜色
+
+<div class="demo-preview">
+  <i class="iconfont m-icon-search" style="color: #1890ff;"></i>
+  <i class="iconfont m-icon-search" style="color: #52c41a;"></i>
+</div>
 
 ```vue
 <template>
@@ -46,6 +74,12 @@
 - **用户类**: m-icon-user, m-icon-home, m-icon-setting, m-icon-message
 
 ## 在按钮中使用
+
+<div class="demo-preview">
+  <m-button leftIcon="m-icon-search">搜索</m-button>
+  <m-button leftIcon="m-icon-add">添加</m-button>
+  <m-button leftIcon="m-icon-delete">删除</m-button>
+</div>
 
 ```vue
 <template>

@@ -1,49 +1,31 @@
 {
-  "hash": "58d2d898",
-  "configHash": "d807ee10",
-  "lockfileHash": "6e251f24",
-  "browserHash": "b23f1681",
+  "hash": "2fe38a04",
+  "configHash": "f000e80d",
+  "lockfileHash": "b601410d",
+  "browserHash": "1d9e3f5a",
   "optimized": {
     "vue": {
-      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "src": "../../../../node_modules/.pnpm/vue@3.5.30_typescript@5.9.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "4bbb4155",
+      "fileHash": "863248e3",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../../node_modules/vitepress/node_modules/@vue/devtools-api/dist/index.js",
+      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.9/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "f40b8ee6",
+      "fileHash": "8eb277d3",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
-      "src": "../../../../node_modules/@vueuse/core/index.mjs",
+      "src": "../../../../node_modules/.pnpm/@vueuse+core@12.8.2_typescript@5.9.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "4e9afc7f",
-      "needsInterop": false
-    },
-    "@vueuse/core": {
-      "src": "../../../../node_modules/@vueuse/core/index.mjs",
-      "file": "@vueuse_core.js",
-      "fileHash": "ca6f3f78",
-      "needsInterop": false
-    },
-    "@vue/reactivity": {
-      "src": "../../../../node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js",
-      "file": "@vue_reactivity.js",
-      "fileHash": "5dff6cdb",
+      "fileHash": "20023650",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-6YECDCWS": {
-      "file": "chunk-6YECDCWS.js"
-    },
-    "chunk-ZMDE4Z5R": {
-      "file": "chunk-ZMDE4Z5R.js"
-    },
-    "chunk-E26UJBJ5": {
-      "file": "chunk-E26UJBJ5.js"
+    "chunk-EPTHZXQC": {
+      "file": "chunk-EPTHZXQC.js"
     }
   }
 }

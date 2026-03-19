@@ -1,7 +1,11 @@
+import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import './custom.css';
-import './client.js';
+import YuanUI from '../../../packages/index.js';
 
 export default {
-  ...DefaultTheme
-};
+  ...DefaultTheme,
+  enhanceApp({ app }: { app: any }) {
+    app.use(YuanUI);
+  }
+} satisfies Theme;
