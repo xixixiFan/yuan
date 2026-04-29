@@ -1,13 +1,18 @@
 <template>
   <div class="header-block-box">
+    
+     <!-- 左侧：Logo -->
     <div class="logoBox">
       <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20logo%20design%20for%20yuan-ui%20Vue%203%20component%20library%20with%20modern%20geometric%20elements%20and%20blue%20color%20palette&image_size=square" alt="yuan-ui" @click="toHome" />
-        <a href="javascript:;" @click="toHome">yuan-ui</a>
+      <a href="javascript:;" @click="toHome">yuan-ui</a>
     </div>
+
+      <!-- 右侧：导航菜单 -->
     <div class="toolsBox">
       <a href="javascript:;" v-for="(item, index) in tools" :key="index" :class="{ active: tabIndex == index }"
         @click="pageView(item, index)">{{ item.name }}</a>
     </div>
+
   </div>
 </template>
 
@@ -18,7 +23,7 @@ const { push, currentRoute } = useRouter();
 const toHome = () => push("/");
 const fullPath = ref(currentRoute.value.fullPath)
 const tabIndex = ref(
-  fullPath == "/yuan"
+  fullPath.value == "/yuan"
     ? 1
     : sessionStorage.getItem("tabIndex") || 0
 );
@@ -33,30 +38,23 @@ const state = reactive({
       name: "组件",
       path: "/yuan",
     },
-    // {
-    //   name:"支持yuan",
-    //   path:'open',
-    // },
     {
       name: "更新日志",
       path: "/yuan/updatelog",
     }
   ],
 });
+
 const { tools } = state;
 const pageView = (item, index) => {
   tabIndex.value = index;
   sessionStorage.setItem("tabIndex", index);
-  if (item.path == "open") {
-    window.open(item.url);
-  } else {
-    if (item.path != fullPath) {
+    if (item.path != fullPath.value) {
       push(item.path);
     }
-  }
 };
 onMounted(() => {
-  if (fullPath == "/yuan") {
+  if (fullPath.value  == "/yuan") {
     sessionStorage.setItem("tabIndex", 1);
   }
 });

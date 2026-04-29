@@ -1,19 +1,29 @@
 <template>
   <div class="pre-code-box">
-    <span class="m-copy" v-if="showCode" @click="copyCode"
-      ><i class="m-icon-copy"></i
-    ></span>
+    <!-- 1. 复制按钮（hover 显示） -->
+    <span class="m-copy" v-if="showCode" @click="copyCode">
+      <i class="m-icon-copy"></i>
+    </span>
+
+     <!-- 2. 代码区域（带展开动画） -->
     <transition name="slide-fade">
+      //v-highlight	自定义指令，用于代码高亮
       <pre
         class="language-html"
-        v-if="showCode"
+        v-if="showCode && sourceCode"
         v-highlight
-      ><code class="language-html">{{ sourceCode }}</code></pre>
+      >
+        <code class="language-html">{{ sourceCode }}</code>
+      </pre>
     </transition>
+
+    <!-- 3. 展开/收起控制 -->
     <div class="showCode" @click="showOrhideCode">
       <span>{{ showCode ? "隐藏代码" : "显示代码" }}</span>
       <i class="m-icon-code"></i>
     </div>
+
+     <!-- 4. 隐藏的 textarea（用于复制） -->
     <textarea id="inputCopy" />
   </div>
 </template>
@@ -22,15 +32,17 @@
 import { onMounted, ref, nextTick } from "vue";
 import Message from "../../packages/message/index";
 const props = defineProps({
+  // 组件目录名
   compName: {
     type: String,
     default: "",
-    require: true,
+    required: true,
   },
+  // demo 文件名
   demoName: {
     type: String,
     default: "",
-    require: true,
+    required: true,
   },
 });
 
@@ -45,23 +57,28 @@ const showOrhideCode = () => {
   }
 };
 const sourceCode = ref("");
+//动态读取组件源码  
 async function getSourceCode() {
   const isDev = import.meta.env.MODE === "development";
   if (isDev) {
+    // 开发环境：用 import ?raw 直接读取文件内容
     sourceCode.value = (
       await import(
         /* @vite-ignore */ `/packages/${props.compName}/doc/${props.demoName}.vue?raw`
       )
     ).default;
   } else {
+     // 生产环境：用 fetch 请求文件
     sourceCode.value = await fetch(
       `/packages/${props.compName}/doc/${props.demoName}.vue`
     ).then((res) => res.text());
   }
 }
+
 const copyCode = () => {
   const input = document.getElementById("inputCopy");
   input.value = sourceCode.value;
+  // 选中全部内容
   input.select();
   if (document.execCommand("copy")) {
     document.execCommand("copy");
@@ -72,7 +89,7 @@ const copyCode = () => {
   } else {
     Message({
       type: "error",
-      text: "代码复制成功",
+      text: "代码复制失败",
     });
   }
 };
