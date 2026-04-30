@@ -1,5 +1,6 @@
 <template>
   <div class="contentBox">
+    
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-container">

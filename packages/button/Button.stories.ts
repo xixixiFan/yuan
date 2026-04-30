@@ -5,6 +5,7 @@ const meta: Meta<typeof mButton> = {
   title: 'Components/Button',
   component: mButton,
   tags: ['autodocs'],
+
    argTypes: {
     // 基础类型
     type: {
@@ -26,6 +27,7 @@ const meta: Meta<typeof mButton> = {
     // 事件
     onClick: { action: 'clicked' },
   },
+  
 };
 
 export default meta;

@@ -66,7 +66,9 @@ const components = [
   { name: 'mBadge', component: mBadge },
   { name: 'mDivider', component: mDivider }
 ];
+
 const install = (app) => {
+  //遍历注册组件 + 挂载全局属性
   components.forEach(({ name, component }) => {
     app.component(name, component)
   })
@@ -75,6 +77,7 @@ const install = (app) => {
   app.config.globalProperties.$Loading = Loading
   app.config.globalProperties.$yuan = $yuan
 }
+
 const yuanUi = {
   version: '0.4.1',
   install
@@ -83,6 +86,8 @@ const yuanUi = {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
+
+// 同时导出单个组件（支持按需引入）
 export {
   // 导出的对象必须具有 install，才能被 app.use() 方法安装
   install,
@@ -121,4 +126,5 @@ export {
   mBadge,
   mDivider
 }
+
 export default yuanUi

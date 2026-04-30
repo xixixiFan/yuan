@@ -1,5 +1,6 @@
 <!-- html -->
 <template>
+
   <m-space>
     <m-button>默认按钮</m-button>
     <m-button type="primary">主要按钮</m-button>
@@ -9,6 +10,7 @@
     <m-button type="dashed">虚线按钮</m-button>
     <m-button type="text">文本按钮</m-button>
   </m-space>
+
   <m-space>
     <m-button round>默认按钮</m-button>
     <m-button type="primary" round>主要按钮</m-button>
@@ -17,6 +19,7 @@
     <m-button type="warning" round>警告按钮</m-button>
     <m-button type="dashed" round>虚线按钮</m-button>
   </m-space>
+  
   <m-space>
     <m-button leftIcon="m-icon-electronics"></m-button>
     <m-button type="primary" leftIcon="m-icon-edit"></m-button>

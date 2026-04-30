@@ -1,5 +1,6 @@
 <template>
   <div class="yuan-ui-doc">
+    
     <aside>
       <div class="list-box">
         <div
@@ -29,12 +30,15 @@
         </div>
       </div>
     </aside>
+
     <!-- 与 router/index.js 中 scrollBehavior 的查询目标完全对应 -->
     <main class="yuanuirightView">
       <router-view v-highlight></router-view>
     </main>
+    
     <!-- m-backtop 是自定义 UI 组件，提供了一个回到顶部的按钮，target 属性指定了点击按钮后滚动到哪个元素的顶部，这里是 .yuanuirightView，即右侧内容区。 -->
     <m-backtop target=".yuanuirightView"></m-backtop>
+  
   </div>
 </template>
 
@@ -43,6 +47,7 @@ import { reactive, ref, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import MenuList from "@/const/menuList.js";
 import { useMainStore } from "@/store/index";
+
 const $store = useMainStore();
 const router = useRouter();
 const menuIndex = ref(sessionStorage.getItem("mIndex") || "0-0");
@@ -77,6 +82,7 @@ watchEffect(() => {
     });
   });
 });
+
 const { MenuLangList } = state;
 </script>
 

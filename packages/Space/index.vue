@@ -26,6 +26,7 @@ const props = defineProps({
 });
 
 const slots = useSlots();
+
 const alignMap = {
   start: "flex-start",
   end: "flex-end",
@@ -62,6 +63,7 @@ const containerStyle = computed(() => {
     width: "100%",
   };
 });
+
 </script>
 <style scoped>
 .m-space-item {

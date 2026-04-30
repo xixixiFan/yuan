@@ -1,32 +1,45 @@
 <template>
   <Transition name="slide-fade">
+    <!-- customClass 是留给使用这个组件的父组件传入的，用于覆盖或扩展样式 -->
+    <!-- style[type] 是动态取值。type 是 props 传入的字符串 -->
     <div :class="['yuan-message', customClass]" :style="style[type]" v-show="isShow">
+      
       <template v-if="isText">
         <i :class="[style[type].icon]"></i>
         <span class="text">{{ text }}</span>
       </template>
+      
       <template v-else>
         <slot />
       </template>
+    
     </div>
   </Transition>
 </template>
 <script setup>
 import { onMounted, ref, reactive, computed } from 'vue'
+
 const props = defineProps({
+  //消息文字
   text: {
     type: [String, Object],
     default: ''
   },
+  //消息类型
   type: {
     type: String,
     default: 'info'
   },
+  //消息图标
   icon: String,
+  //文本颜色
   textColor: String,
+  //背景颜色
   bgColor: String,
+  //自定义样式类
   customClass: String
 })
+
 const state = reactive({
   style: {
     info: {
@@ -61,11 +74,15 @@ const state = reactive({
     }
   }
 })
+
 const isShow = ref(false)
+// 计算最终的样式，优先使用 props 传入的值，如果没有则使用默认值
 const { style } = state
+// 判断 text 是字符串还是对象，如果是字符串就显示文本，如果是对象就显示插槽内容
 const isText = computed(() => {
   return typeof props.text === 'string'
 })
+
 onMounted(() => {
   isShow.value = true
 })

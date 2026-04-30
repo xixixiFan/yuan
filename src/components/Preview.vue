@@ -7,7 +7,7 @@
 
      <!-- 2. 代码区域（带展开动画） -->
     <transition name="slide-fade">
-      //v-highlight	自定义指令，用于代码高亮
+      <!-- v-highlight	自定义指令，用于代码高亮 -->
       <pre
         class="language-html"
         v-if="showCode && sourceCode"

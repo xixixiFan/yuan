@@ -1,3 +1,4 @@
+//组件实现、Props、样式、逻辑
 <template>
   <button :class="isClass" :style="styles">
     <i :class="isIconClass" v-if="leftIcon"></i>
@@ -8,8 +9,9 @@
         'margin-right':
           $slot['default'] == undefined ? '0px' : rightIcon ? '4px' : '0px',
       }"
-      ><slot
-    /></span>
+    >
+      <slot/>
+    </span>
     <i :class="isIconClass" v-if="rightIcon"></i>
   </button>
 </template>
@@ -18,80 +20,61 @@ defineOptions({
   name: "mButton"
 });
 import { computed, useSlots } from "vue";
+
 const props = defineProps({
-  type: {
-    type: String,
-    default: "default",
-  },
-  disabled: Boolean,
-  round: Boolean,
-  size: {
-    type: String,
-    default: "default",
-  },
-  customColor: {
-    type: String,
-    default: "",
-  },
-  leftIcon: String,
-  rightIcon: String,
-  localing: Boolean,
+  type: { type: String, default: "default" },      // 按钮类型
+  disabled: Boolean,                                // 禁用
+  round: Boolean,                                   // 圆角
+  size: { type: String, default: "default" },       // 尺寸
+  customColor: { type: String, default: "" },       // 自定义颜色
+  leftIcon: String,                                 // 左侧图标
+  rightIcon: String,                                // 右侧图标
+  localing: Boolean,                                // 加载中
 });
+
 const mBtnDeaultStyle = {
   background: props.customColor,
   border: props.customColor,
   color: "#fff",
 };
+//从 Setup 上下文中返回 slots 对象，其中包含父组件传递的插槽。这些插槽为可调用的函数，返回虚拟 DOM 节点。
 const $slot = useSlots();
+
 const isClass = computed(() => {
   return [
-    props.size == "default"
-      ? "yuan-button"
-      : props.size == "medium"
-      ? "yuan-button-medium"
-      : props.size == "small"
-      ? "yuan-button-small"
-      : props.size == "mini"
-      ? "yuan-button-mini"
+  // 尺寸类
+    props.size == "default" ? "yuan-button"
+      : props.size == "medium" ? "yuan-button-medium"
+      : props.size == "small" ? "yuan-button-small"
+      : props.size == "mini" ? "yuan-button-mini"
       : "yuan-button",
+    // 类型类（禁用时去掉类型色）
     props.type ? (props.disabled ? "" : `yuan-button-${props.type}`) : "",
+    // 禁用类
     props.disabled ? `yuan-button-${props.type}-disabled` : "",
-    {
-      "yuan-button-round": props.round,
-    },
+    // 圆角类(效果与三元表达式一致，返回对象 → 条件判断，返回字符串->直接作为类名)
+    { "yuan-button-round": props.round },
   ];
 });
+
 const isIconClass = computed(() => {
   return [
     "iconfont",
     props.leftIcon || props.rightIcon,
-    props.localing
-      ? props.leftIcon == "m-icon-loading1" ||
-        props.leftIcon == "m-icon-loading2" ||
-        props.leftIcon == "m-icon-loading3" ||
-        props.leftIcon == "m-icon-loading4" ||
-        props.leftIcon == "m-icon-loading5" ||
-        props.leftIcon == "m-icon-loading6" ||
-        props.rightIcon == "m-icon-loading1" ||
-        props.rightIcon == "m-icon-loading2" ||
-        props.rightIcon == "m-icon-loading3" ||
-        props.rightIcon == "m-icon-loading4" ||
-        props.rightIcon == "m-icon-loading5" ||
-        props.rightIcon == "m-icon-loading6"
-        ? "yuan-icon-loading"
-        : ""
-      : "",
+    // 给图标加 yuan-icon-loading 类，CSS 里定义了无限旋转动画
+    props.localing ? "yuan-icon-loading" : "", 
   ];
 });
+
 const styles = computed(() => {
-  return [
-    props.customColor == ""
-      ? {}
-      : props.type == "default"
-      ? {}
-      : mBtnDeaultStyle,
-  ];
+  // 有自定义颜色，且类型不是 default 时，才应用默认样式
+  if (props.customColor !== "" && props.type !== "default") {
+    return [mBtnDeaultStyle];
+  }
+  // 其他情况：无额外样式
+  return [{}];
 });
+
 </script>
 <style>
 @import url("../../styles/iconfont.css");
