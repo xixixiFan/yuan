@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <headerBlockVue />
   <router-view></router-view>
 </template>
@@ -11,4 +11,23 @@ import headerBlockVue from "./components/header-block.vue";
 #app {
   overflow: hidden;
 }
-</style>
+</style> -->
+<template>
+  <div>
+    <m-button @click="testSuccess">成功</m-button>
+    <m-button @click="testError">错误</m-button>
+    <m-button @click="testMultiple">多条消息</m-button>
+  </div>
+</template>
+
+<script setup>
+import Message from '../packages/message/index.js'
+
+const testSuccess = () => Message.success('操作成功')
+const testError = () => Message.error('操作失败')
+const testMultiple = () => {
+  Message.success('第一条')
+  Message.error('第二条')
+  Message.warning('第三条')
+}
+</script>

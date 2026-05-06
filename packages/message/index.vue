@@ -1,15 +1,16 @@
 <template>
   <Transition name="slide-fade">
     <!-- customClass 是留给使用这个组件的父组件传入的，用于覆盖或扩展样式 -->
-    <!-- style[type] 是动态取值。type 是 props 传入的字符串 -->
-    <div :class="['yuan-message', customClass]" :style="style[type]" v-show="isShow">
+    <!-- currentTypeObj 是动态取值。type 是 props 传入的字符串 -->
+    <div :class="['yuan-message', customClass]" :style="typeStyles[type]" v-show="isShow">
       
       <template v-if="isText">
-        <i :class="[style[type].icon]"></i>
+        <i :class="[currentTypeObj?.icon]"></i>
         <span class="text">{{ text }}</span>
       </template>
       
       <template v-else>
+      <!-- Object：可能是 VNode，用于复杂内容（比如带链接的消息） -->
         <slot />
       </template>
     
@@ -40,44 +41,58 @@ const props = defineProps({
   customClass: String
 })
 
-const state = reactive({
-  style: {
-    info: {
-      icon: props.icon || 'm-icon-prompt-filling',
-      color: '#505050',
-      backgroundColor: 'rgb(229 227 224)',
-      borderColor: 'rgb(229 227 224)'
-    },
-    warn: {
-      icon: props.icon || 'm-icon-warning',
-      color: '#f57b29',
-      backgroundColor: 'rgb(243 233 220)',
-      borderColor: 'rgb(243 233 220)'
-    },
-    error: {
-      icon: props.icon || 'm-icon-delete-filling',
-      color: '#ec3437',
-      backgroundColor: 'rgb(251 228 228)',
-      borderColor: 'rgb(251 228 228)'
-    },
-    success: {
-      icon: props.icon || 'm-icon-success',
-      color: '#09b63d',
-      backgroundColor: 'rgb(223 243 212)',
-      borderColor: 'rgb(223 243 212)'
-    },
-    custom: {
-      icon: props.icon,
-      color: props.textColor,
-      backgroundColor: props.bgColor,
-      borderColor: props.bgColor
-    }
+const typeStyles = {
+  info: {
+    icon: 'm-icon-prompt-filling',
+    color: '#505050',
+    backgroundColor: 'rgb(229 227 224)',
+    borderColor: 'rgb(229 227 224)'
+  },
+  warn: {
+    icon: 'm-icon-warning',
+    color: '#f57b29',
+    backgroundColor: 'rgb(243 233 220)',
+    borderColor: 'rgb(243 233 220)'
+  },
+  error: {
+    icon: 'm-icon-delete-filling',
+    color: '#ec3437',
+    backgroundColor: 'rgb(251 228 228)',
+    borderColor: 'rgb(251 228 228)'
+  },
+  success: {
+    icon: 'm-icon-success',
+    color: '#09b63d',
+    backgroundColor: 'rgb(223 243 212)',
+    borderColor: 'rgb(223 243 212)'
+  },
+  custom: {
+    icon: '',
+    color: '',
+    backgroundColor: '',
+    borderColor: ''
+  }
+}
+
+const currentTypeObj = computed(() => {
+  const type = props.type
+  // 容错：不存在的类型默认用 info
+  const config = typeStyles[type] || typeStyles.info
+  
+  return {
+    ...config,
+    // 父组件传了 icon 就覆盖默认值
+    icon: props.icon || config.icon,
+    // 自定义样式覆盖
+    color: props.textColor || config.color,
+    backgroundColor: props.bgColor || config.backgroundColor,
+    borderColor: props.bgColor || config.borderColor
   }
 })
 
 const isShow = ref(false)
 // 计算最终的样式，优先使用 props 传入的值，如果没有则使用默认值
-const { style } = state
+const style = computed(() => currentTypeObj.value)
 // 判断 text 是字符串还是对象，如果是字符串就显示文本，如果是对象就显示插槽内容
 const isText = computed(() => {
   return typeof props.text === 'string'
@@ -86,6 +101,7 @@ const isText = computed(() => {
 onMounted(() => {
   isShow.value = true
 })
+
 </script>
 <style>
 .slide-fade-enter-active {

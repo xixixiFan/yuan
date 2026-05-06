@@ -1,0 +1,24 @@
+/* 消息容器样式 */
+.yuan-message-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.yuan-message-wrapper {
+  pointer-events: auto;
+}
+
+.yuan-message-container .yuan-message {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}

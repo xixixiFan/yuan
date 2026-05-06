@@ -1,6 +1,6 @@
 <!-- html -->
 <template>
-  <m-input v-model="value1" type="text" placeholder="自定义你喜欢的focus颜色" focusColor="red"></m-input>
+  <m-input v-model="value1" type="text" placeholder="自定义你喜欢的focus颜色" focusColor="blue"></m-input>
 </template>
 
 <!-- js -->
